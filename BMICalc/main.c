@@ -11,35 +11,26 @@
 
 typedef struct {
     float heightInMeters;
-    float weightInKilos;
+    int weightInKilos;
 } Person;
 
-float bodyMassIndex(Person p) {
-    return p.weightInKilos / (p.heightInMeters * p.heightInMeters);
+float bodyMassIndex(Person *p) {
+    return p->weightInKilos / (p->heightInMeters * p->heightInMeters);
 }
 
 
 
 int main(int argc, const char * argv[]) {
-    Person mikey;
-    mikey.heightInMeters = 1.7;
-    mikey.weightInKilos = 96;
+    Person *mikey = (Person *)malloc(sizeof(Person));
     
-    Person aaron;
-    aaron.heightInMeters = 1.97;
-    aaron.weightInKilos = 84;
+    mikey->heightInMeters = 1.7;
+    mikey->weightInKilos = 96;
     
-    float bmi;
-    bmi = bodyMassIndex(mikey);
-    printf("mikey has a BMI of %.2f\n", bmi);
+    float mikeyBMI = bodyMassIndex(mikey);
+    printf("mikey has a BMI of %.2f\n", mikeyBMI);
     
-    bmi = bodyMassIndex(aaron);
-    printf("aaron has a BMI of %.2f\n", bmi);
-    
-    
-    // what the date will be in 4 million seconds
-    
-    //double month, double day, double year...get current time and date and add 4 million seconds and return date
+    free(mikey);
+    mikey = NULL;
     
     long secondsSince = time(NULL) + 4000000;
     
